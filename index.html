@@ -170,10 +170,23 @@
         addButton.style.display = "none";
       }
       function removeValue(id) {
-        let el = "row" + id;
-        let element = document.getElementById(el);
-        element.parentNode.removeChild(element);
-        swal("Removed!", "Record Deleted!, click 'Ok' to continue", "success");
+        var confirmation = confirm("Do you really want to remove the record?");
+        if (confirmation) {
+          let el = "row" + id;
+          let element = document.getElementById(el);
+          element.parentNode.removeChild(element);
+          swal(
+            "Removed!",
+            "Record Deleted!, click 'Ok' to continue",
+            "success"
+          );
+        } else {
+          swal(
+            "Cancelled!",
+            "Record not deleted!, click 'Ok' to continue",
+            "info"
+          );
+        }
       }
       function changeData() {
         // let ele = document.getElementById(changeDataId);
