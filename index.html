@@ -23,76 +23,84 @@
     }
   </style>
   <body
-    class="bg-primary px-5 w-100 py-5 d-flex justify-content-center align-items-center"
+    class="bg-primary px-5 w-100 py-5 d-flex flex-column justify-content-center align-items-center"
     style="height: 100vh"
   >
-    <div
-      class="container bg-white p-3 rounded h-75 border-4"
-      style="width: 48%"
-    >
-      <div class="row align-items-center">
-        <div class="my-3">
-          <p class="fw-bold">Product Name:</p>
-          <input
-            type="text"
-            name=""
-            id="userText"
-            class="fw-bold shadow-sm w-100 border-0 p-3 rounded"
-            style="background-color: #bbb; color: #1f1f1f"
-            placeholder="Enter your text here... "
-          />
-        </div>
-        <div class="my-3">
-          <p class="fw-bold">Product Quantity:</p>
-          <input
-            type="number"
-            name=""
-            id="userText"
-            class="fw-bold shadow-sm w-100 border-0 p-3 rounded"
-            style="background-color: #bbb; color: #1f1f1f"
-            placeholder="Enter your text here... "
-          />
-        </div>
-        <div class="my-3">
-          <p class="fw-bold">Product Price:</p>
-          <input
-            type="number"
-            name=""
-            id="userText"
-            class="fw-bold shadow-sm w-100 border-0 p-3 rounded"
-            style="background-color: #bbb; color: #1f1f1f"
-            placeholder="Enter your text here... "
-          />
-        </div>
-        <div class="col-2 mt-5">
-          <button
-            id="addButton"
-            class="btn btn-primary py-3 px-5"
-            onclick="addData()"
-          >
-            Add
-          </button>
-          <button
-            id="changeButton"
-            class="btn btn-info text-white py-3 px-5"
-            onclick="changeData()"
-          >
-            Change
-          </button>
+    <h1 class="text-white fw-bold py-5">CRUD Application</h1>
+    <div class="w-100 d-flex h-75 align-content-center">
+      <div
+        class="container bg-white p-3 rounded h-100 border-4"
+        style="width: 48%"
+      >
+        <div class="row align-items-center">
+          <div class="my-3">
+            <p class="fw-bold">Product Name:</p>
+            <input
+              type="text"
+              name=""
+              id="productName"
+              class="fw-bold shadow-sm w-100 border-0 p-3 rounded"
+              style="background-color: #bbb; color: #1f1f1f"
+              placeholder="Enter your text here... "
+            />
+          </div>
+          <div class="my-3">
+            <p class="fw-bold">Product Quantity:</p>
+            <input
+              type="number"
+              name=""
+              id="productQuantity"
+              class="fw-bold shadow-sm w-100 border-0 p-3 rounded"
+              style="background-color: #bbb; color: #1f1f1f"
+              placeholder="Enter your text here... "
+            />
+          </div>
+          <div class="my-3">
+            <p class="fw-bold">Product Price:</p>
+            <input
+              type="number"
+              name=""
+              id="productPrice"
+              class="fw-bold shadow-sm w-100 border-0 p-3 rounded"
+              style="background-color: #bbb; color: #1f1f1f"
+              placeholder="Enter your text here... "
+            />
+          </div>
+          <div class="col-2 mt-5">
+            <button
+              id="addButton"
+              class="btn btn-primary py-3 px-5"
+              onclick="addData()"
+            >
+              Add
+            </button>
+            <button
+              id="changeButton"
+              class="btn btn-info text-white py-3 px-5"
+              onclick="changeData()"
+            >
+              Change
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="container bg-white py-1 px-3 rounded h-75" style="width: 48%">
-      <table class="w-100">
-        <thead class="w-100 text-center">
-          <tr>
-            <th>Sr.No.</th>
-            <th>Description</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+      <div
+        class="container bg-white py-1 px-3 rounded h-100"
+        style="width: 48%"
+      >
+        <table class="w-100">
+          <thead class="w-100 text-center">
+            <tr>
+              <th>Sr.No.</th>
+              <th>Product Name</th>
+              <th>Product Quantity</th>
+              <th>Product Price</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -106,31 +114,50 @@
     ></script>
     <script>
       changeButton.style.display = "none";
-      let userText = document.getElementById("userText");
+      let productName = document.getElementById("productName");
+      let productQuantity = document.getElementById("productQuantity");
+      let productPrice = document.getElementById("productPrice");
       let count = 1;
-      let changeDataId = "";
+      let inputProductName = "";
+      let inputProductQuantity = "";
+      let inputProductPrice = "";
       function addData() {
         let element = `<tr class="text-center" id="rowdelete${count}">
             <td>${count}</td>
-            <td id='edit${count}usertextId'>${userText.value}</td>
+            <td id='edit${count}productName'>${productName.value}</td>
+            <td id='edit${count}productQuantity'>${productQuantity.value}</td>
+            <td id='edit${count}productPrice'>${productPrice.value}</td>
             <td>
                 <button class="btn btn-info text-white" id='edit${count}' onclick='changeValue(this.id)'>Edit</button>
                 <button class="btn btn-danger text-white" id='delete${count}' onclick='removeValue(this.id)'>Delete</button>
                 </td>
             </tr>`;
         let tableBody = document.querySelector("tbody");
-        if (userText.value !== "") {
+        if (productName.value !== "") {
           tableBody.innerHTML += element;
           count++;
-          userText.value = "";
+          productName.value = "";
+          productQuantity.value = "";
+          productPrice.value = "";
         }
       }
       function changeValue(id) {
-        let el = id + "usertextId";
-        let element = document.getElementById(el);
-        userText.value = element.textContent;
-        changeDataId = el;
-        console.log(changeDataId);
+        let productNames = id + "productName";
+        let productQuantitys = id + "productQuantity";
+        let productPrices = id + "productPrice";
+
+        let element1 = document.getElementById(productNames);
+        let element2 = document.getElementById(productQuantitys);
+        let element3 = document.getElementById(productPrices);
+
+        productName.value = element1.textContent;
+        productQuantity.value = element2.textContent;
+        productPrice.value = element3.textContent;
+
+        inputProductName = productNames;
+        inputProductQuantity = productQuantitys;
+        inputProductPrice = productPrices;
+
         changeButton.style.display = "block";
         addButton.style.display = "none";
       }
@@ -140,9 +167,23 @@
         element.parentNode.removeChild(element);
       }
       function changeData() {
-        let ele = document.getElementById(changeDataId);
-        ele.textContent = userText.value;
-        userText.value = "";
+        // let ele = document.getElementById(changeDataId);
+        // ele.textContent = userText.value;
+        console.log(inputProductName);
+        console.log(inputProductQuantity);
+        console.log(inputProductPrice);
+        let tableProductName = document.getElementById(inputProductName);
+        let tableProductQuantity =
+          document.getElementById(inputProductQuantity);
+        let tableProductPrice = document.getElementById(inputProductPrice);
+
+        tableProductName.textContent = productName.value;
+        tableProductQuantity.textContent = productQuantity.value;
+        tableProductPrice.textContent = productPrice.value;
+
+        productName.value = "";
+        productQuantity.value = "";
+        productPrice.value = "";
         addButton.style.display = "block";
         changeButton.style.display = "none";
       }
